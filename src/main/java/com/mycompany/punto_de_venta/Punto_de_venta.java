@@ -9,5 +9,7 @@ public class Punto_de_venta {
     config_ventana ven = new config_ventana();
     
     ven.ventana();
+    
+    
          }
 }
