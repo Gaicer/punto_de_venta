@@ -12,11 +12,17 @@ import javax.swing.*;
  * @author isaim
  */
 public class config_ventana extends JFrame implements ActionListener{
-    private JTextField txtUsuario;
-    private JPasswordField txtContrasena;
-    private JButton boton ;
-
+    JTextField txtUsuario;
+    JPasswordField txtContrasena;
+    private JButton boton;
+    Login login = new Login();
     public void ventana(){
+        configurarVentana();
+         
+
+    }
+    
+    public void configurarVentana(){
         setTitle("Punto de Venta");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,25 +40,25 @@ public class config_ventana extends JFrame implements ActionListener{
         add(titulo);
         add(usuario);
         add(entrada);
-        usuarioLogin();
+        componentes();
         
-        boton();
+        btnEventos();
        
         
         setVisible(true);
-         
-
     }
-    public void usuarioLogin(){
+    
+    public void componentes(){
         txtUsuario = new JTextField();
         txtContrasena = new JPasswordField();
         txtUsuario.setBounds(65,80, 100, 30);
         txtContrasena.setBounds(100, 110, 100, 30);
+       
         add(txtContrasena);
         add(txtUsuario);
     }
     
-    public void boton (){
+    public void btnEventos (){
         boton = new JButton("Aceptar");
         boton.setBounds(30, 150, 100, 50);
             add(boton);
@@ -61,14 +67,46 @@ public class config_ventana extends JFrame implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == boton) {
+            if (e.getSource() == boton) {
+                
+            iniciarSesion();                
+                
+                //String usuario = txtUsuario.getText();
 
-            String usuario = txtUsuario.getText();
+                //String contrasena = String.valueOf(txtContrasena.getPassword());
 
-            String contrasena = String.valueOf(txtContrasena.getPassword());
-
-            System.out.println(usuario);
-            System.out.println(contrasena);
+                //System.out.println(usuario);
+                //System.out.println(contrasena);
+            }
         }
-    }
+        
+        public void iniciarSesion(){
+            String usuario = txtUsuario.getText();
+            String pass = String.valueOf(txtContrasena.getPassword());
+            
+              if (usuario.isEmpty() || pass.isEmpty()) {
+              JOptionPane.showMessageDialog(this,
+                "Complete todos los campos");
+        return;
+        }
+
+        if (login.validarUsuario(usuario, pass)) {
+
+        JOptionPane.showMessageDialog(this,
+                "Bienvenido " + usuario);
+
+        // Aquí después irá la animación
+        //abrirMenu();
+
+        } else {
+        JOptionPane.showMessageDialog(this,
+                "Usuario o contraseña incorrectos");
+        }
+        }
+        
+   
+        
+
+      
+        
 }
