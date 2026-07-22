@@ -16,10 +16,13 @@ public class config_ventana extends JFrame implements ActionListener{
     JPasswordField txtContrasena;
     private JButton boton;
     Login login = new Login();
-    public void ventana(){
+    
+    public void PanelLogin(){
         configurarVentana();
-         
-
+    }
+    
+    public void panelMenu(){
+        
     }
     
     public void configurarVentana(){
@@ -69,7 +72,7 @@ public class config_ventana extends JFrame implements ActionListener{
 
             if (e.getSource() == boton) {
                 
-            iniciarSesion();                
+                iniciarSesion();                
                 
                 //String usuario = txtUsuario.getText();
 
@@ -84,26 +87,27 @@ public class config_ventana extends JFrame implements ActionListener{
             String usuario = txtUsuario.getText();
             String pass = String.valueOf(txtContrasena.getPassword());
             
-              if (usuario.isEmpty() || pass.isEmpty()) {
-              JOptionPane.showMessageDialog(this,
+            if (usuario.isEmpty() || pass.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
                 "Complete todos los campos");
-        return;
-        }
+                return;
+            }
 
-        if (login.validarUsuario(usuario, pass)) {
+            if (login.validarUsuario(usuario, pass)) {
 
-        JOptionPane.showMessageDialog(this,
+                JOptionPane.showMessageDialog(this,
                 "Bienvenido " + usuario);
-
-        // Aquí después irá la animación
-        //abrirMenu();
-
-        } else {
-        JOptionPane.showMessageDialog(this,
+                MenuPrincipal principal = new MenuPrincipal();
+                principal.setVisible(true);
+                // Aquí después irá la animación
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this,
                 "Usuario o contraseña incorrectos");
-        }
+            }
         }
         
+       
    
         
 
