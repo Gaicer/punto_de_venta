@@ -12,17 +12,22 @@ import javax.swing.*;
  * @author isaim
  */
 public class config_ventana extends JFrame implements ActionListener{
+    Login login = new Login();
+    MenuPrincipal menu = new MenuPrincipal();
+    
     JTextField txtUsuario;
     JPasswordField txtContrasena;
     private JButton boton;
-    Login login = new Login();
     
+
     public void PanelLogin(){
         configurarVentana();
     }
     
     public void panelMenu(){
+        menu.menuVentana();
         
+
     }
     
     public void configurarVentana(){
@@ -97,9 +102,9 @@ public class config_ventana extends JFrame implements ActionListener{
 
                 JOptionPane.showMessageDialog(this,
                 "Bienvenido " + usuario);
-                MenuPrincipal principal = new MenuPrincipal();
-                principal.setVisible(true);
-                // Aquí después irá la animación
+                panelMenu();
+                
+                // Aquí cierra la venta anterior XD
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this,
@@ -107,6 +112,8 @@ public class config_ventana extends JFrame implements ActionListener{
             }
         }
         
+        
+
        
    
         
