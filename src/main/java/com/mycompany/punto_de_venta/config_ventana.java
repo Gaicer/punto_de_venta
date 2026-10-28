@@ -12,23 +12,15 @@ import javax.swing.*;
  * @author isaim
  */
 public class config_ventana extends JFrame implements ActionListener{
-    Login login = new Login();
-    MenuPrincipal menu = new MenuPrincipal();
+    
+    
     
     JTextField txtUsuario;
     JPasswordField txtContrasena;
     private JButton boton;
     
 
-    public void PanelLogin(){
-        configurarVentana();
-    }
     
-    public void panelMenu(){
-        menu.menuVentana();
-        
-
-    }
     
     public void configurarVentana(){
         setTitle("Punto de Venta");
@@ -89,6 +81,8 @@ public class config_ventana extends JFrame implements ActionListener{
         }
         
         public void iniciarSesion(){
+            Login login = new Login();
+            MenuPrincipal menu = new MenuPrincipal();
             String usuario = txtUsuario.getText();
             String pass = String.valueOf(txtContrasena.getPassword());
             
@@ -99,17 +93,18 @@ public class config_ventana extends JFrame implements ActionListener{
             }
 
             if (login.validarUsuario(usuario, pass)) {
-
+                
                 JOptionPane.showMessageDialog(this,
                 "Bienvenido " + usuario);
-                panelMenu();
                 
-                // Aquí cierra la venta anterior XD
+                menu.ventana();
                 this.dispose();
+                
             } else {
                 JOptionPane.showMessageDialog(this,
                 "Usuario o contraseña incorrectos");
             }
+            
         }
         
         

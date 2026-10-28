@@ -1,43 +1,69 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.punto_de_venta;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.ImageIcon;
+import javax.swing.JTextField;
+
 
 /**
  *
  * @author isaim
  */
 public class MenuPrincipal extends JFrame{
-     
-    public void menuVentana(){
-        ventana();
-        imagenLogo();
-    }
-    
-    public void ventana () {
+    JLabel logo = new JLabel();
+    JTextField txtRanura;
+
+    public void ventana() {
         setTitle("Punto de Venta");
-        setSize(500, 400);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-        add(new JLabel("Menu"));
-        setVisible(true);
 
-    }
-    
      
-    public void imagenLogo(){
-     JLabel logo = new JLabel();
-     logo.setIcon(new ImageIcon(getClass().getResource("/img/logcarritolla.png")));
-        logo.setBounds(20, 20, 128, 128);
-        add(logo);
+        imagenLogo();
+        componentesMenu();
+       
+        setVisible(true);
     }
     
+        public void imagenLogo() {
+            java.net.URL imgURL = getClass().getResource("/imagenes/imagen.png");
+
+            if (imgURL != null) {
+                ImageIcon originalIcon = new ImageIcon(imgURL);
+
+                // Redimensionar la imagen para que encaje en el Label (128x128)
+                Image imgEscalada = originalIcon.getImage().getScaledInstance(128, 128, Image.SCALE_SMOOTH);
+                ImageIcon imagenFinal = new ImageIcon(imgEscalada);
+
+                if (logo == null) {
+                    logo = new JLabel();
+                }
+
+                logo.setIcon(imagenFinal);
+                logo.setBounds(20, 5, 90, 128);
+                add(logo);
+
+            } else {
+                System.err.println("No se encontró la imagen en /imagenes/imagen.png");
+            }
+        }
     
+        
+        
+        public void componentesMenu(){
+           txtRanura  = new JTextField();
+           txtRanura.setBounds(65,100, 200, 30);
+           
+           
+           add(txtRanura);
+        }
+        
+
+
     
     
     

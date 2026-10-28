@@ -9,7 +9,7 @@ public class Punto_de_venta {
     config_ventana win = new config_ventana();
         
     
-    win.PanelLogin();
+    win.configurarVentana();
     
     
     
